@@ -51,7 +51,7 @@ create table student (
 create table teacher_workload (
     course_id int not null
     , teacher_id int not null -- but do not restrict the teacher workload itself
-    , constraint ct_course unique (course_id) -- each course instructed by only one teacher
+    , constraint uq_course unique (course_id) -- each course instructed by only one teacher, meaning course may only appear once in the workload
     , constraint fk_course foreign key (course_id) references course (id)
         on update cascade on delete cascade
     , constraint fk_teacher foreign key (teacher_id) references teacher (id)
@@ -68,31 +68,3 @@ create table student_registration (
     , constraint fk_course foreign key (course_id) references course (id)
         on update cascade on delete cascade
 );
-
--- insert some faculty, students, courses...
-insert into teacher (teacher_name) values
-    ('sarah')
-    , ('theiland')
-    , ('ulma')
-    , ('victor')
-
-insert into student (student_name) values
-    ('amy')
-    , ('billy')
-    , ('charles')
-    , ('david')
-    , ('emily')
-
-insert into course (course_name) values
-    ('101')
-    , ('102')
-    , ('103')
-    , ('201')
-    , ('202')
-    , ('203')
-    , ('301')
-    , ('302')
-    , ('303')
-    , ('401')
-    , ('402')
-    , ('403')
